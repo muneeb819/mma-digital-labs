@@ -1,20 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OFFERS, BUDGETS, type OfferType } from "@/lib/products";
 
 export function InquiryForm({
   productKey,
   productName,
   defaultOffer = "DEMO",
+  source,
 }: {
   productKey?: string;
   productName?: string;
   defaultOffer?: OfferType;
+  source?: string;
 }) {
   const [offer, setOffer] = useState<OfferType>(defaultOffer);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [attribution, setAttribution] = useState<{ pagePath: string; referrer: string; utm: string }>({
+    pagePath: "",
+    referrer: "",
+    utm: "",
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utm = params.get("utm_source") || "";
+    setAttribution({
+      pagePath: window.location.pathname,
+      referrer: document.referrer || "",
+      utm,
+    });
+  }, []);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,6 +51,9 @@ export function InquiryForm({
           website: fd.get("website"),
           offerType: offer,
           productKey,
+          source: attribution.utm || source || undefined,
+          pagePath: attribution.pagePath,
+          referrer: attribution.referrer,
         }),
       });
       const data = await res.json();

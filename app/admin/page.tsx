@@ -14,6 +14,9 @@ interface Lead {
   budget: string | null;
   message: string;
   status: LeadStatus;
+  source: string | null;
+  pagePath: string | null;
+  referrer: string | null;
   createdAt: string;
 }
 
@@ -113,6 +116,13 @@ export default function AdminPage() {
   }));
   const shown = filter === "ALL" ? leads : leads.filter((l) => l.status === filter);
 
+  const sourceCounts = new Map<string, number>();
+  for (const l of leads) {
+    const src = (l.source || "direct").split(":")[0];
+    sourceCounts.set(src, (sourceCounts.get(src) ?? 0) + 1);
+  }
+  const topSources = [...sourceCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
+
   return (
     <div className="space-y-6 py-12">
       <div className="flex items-center justify-between">
@@ -139,6 +149,20 @@ export default function AdminPage() {
         ))}
       </div>
 
+      <div className="panel !py-4">
+        <div className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+          Lead sources
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {topSources.map(([src, n]) => (
+            <span key={src} className="chip">
+              {src} <b className="ml-1 text-slate-200">{n}</b>
+            </span>
+          ))}
+          {topSources.length === 0 && <span className="text-xs text-slate-600">No leads yet</span>}
+        </div>
+      </div>
+
       <div className="space-y-3">
         {shown.map((l) => (
           <div key={l.id} className="panel !p-5">
@@ -157,6 +181,11 @@ export default function AdminPage() {
                   </span>
                   {l.productName && <span>{l.productName}</span>}
                   {l.budget && <span>· 💰 {l.budget}</span>}
+                  {l.source && (
+                    <span className="rounded bg-indigo-500/10 px-2 py-0.5 font-semibold text-indigo-300">
+                      {l.source}
+                    </span>
+                  )}
                   <span>· {new Date(l.createdAt).toLocaleString()}</span>
                 </div>
                 <p className="mt-2 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-slate-400">

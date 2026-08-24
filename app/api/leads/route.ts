@@ -42,6 +42,9 @@ export async function POST(req: Request) {
       offerType,
       budget: clean(body.budget, 40) || null,
       message,
+      source: clean(body.source, 120) || "direct",
+      pagePath: clean(body.pagePath, 300) || null,
+      referrer: clean(body.referrer, 500) || null,
     },
   });
 
@@ -50,7 +53,9 @@ export async function POST(req: Request) {
     fetch(hook, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: `New lead: ${name} <${email}> — ${product?.name ?? "General"} (${offerType})` }),
+      body: JSON.stringify({
+        text: `New lead (${lead.source}): ${name} <${email}> — ${product?.name ?? "General"} (${offerType})`,
+      }),
     }).catch(() => {});
   }
 
