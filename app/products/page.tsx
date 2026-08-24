@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PRODUCTS } from "@/lib/products";
-import { ProductCard } from "@/app/page";
+import { ProductCard } from "@/components/ProductCard";
 
 export const metadata: Metadata = {
   title: "Systems catalog",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SEO_PAGES } from "@/lib/seo";
 import { PRODUCTS } from "@/lib/products";
 
@@ -38,14 +39,14 @@ export default function SolutionsIndexPage() {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {pages.map((p) => (
-              <a
+              <Link
                 key={p.slug}
                 href={`/solutions/${p.slug}`}
                 className="panel block transition hover:border-indigo-500/50"
               >
                 <div className="font-semibold leading-snug text-slate-200">{p.keyword}</div>
                 <p className="mt-1.5 line-clamp-2 text-sm text-slate-500">{p.description}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

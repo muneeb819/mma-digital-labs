@@ -21,6 +21,8 @@ export async function PATCH(req: Request) {
   if (!id || !STATUSES.includes(status as LeadStatus)) {
     return NextResponse.json({ error: "Bad request" }, { status: 422 });
   }
+  const existing = await prisma.lead.findUnique({ where: { id } });
+  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const lead = await prisma.lead.update({ where: { id }, data: { status } });
   return NextResponse.json({ ok: true, lead });
 }
@@ -30,6 +32,8 @@ export async function DELETE(req: Request) {
   const body = await req.json().catch(() => ({}));
   const id = String(body.id ?? "");
   if (!id) return NextResponse.json({ error: "Bad request" }, { status: 422 });
+  const existing = await prisma.lead.findUnique({ where: { id } });
+  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
   await prisma.lead.delete({ where: { id } });
   return NextResponse.json({ ok: true });
 }

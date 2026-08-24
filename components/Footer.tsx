@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-labs-line">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-10 text-sm text-slate-500 sm:flex-row sm:items-center">
         <div>
-          <div className="font-bold text-slate-300">MMA Digital Labs</div>
-          <p className="mt-1 max-w-md text-xs leading-relaxed">
+          <Logo compact />
+          <p className="mt-2 max-w-md text-xs leading-relaxed">
             Production-ready systems built by engineers — licensed, customized and shipped
             worldwide.
           </p>

@@ -4,6 +4,9 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://mma-digital-labs.vercel.app"
+  ),
   title: {
     default: "MMA Digital Labs — Production-ready software systems",
     template: "%s · MMA Digital Labs",
