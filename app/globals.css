@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-labs-bg text-slate-200 antialiased;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-2.5 font-semibold text-white shadow-lg shadow-indigo-950/40 transition hover:brightness-110 disabled:opacity-50;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-labs-line px-5 py-2.5 font-semibold text-slate-300 transition hover:bg-labs-card hover:text-white;
+}
+
+.input {
+  @apply w-full rounded-lg border border-labs-line bg-labs-panel px-3 py-2.5 text-slate-100 placeholder-slate-500 outline-none focus:border-indigo-500;
+}
+
+.panel {
+  @apply rounded-2xl border border-labs-line bg-labs-panel/60 p-6;
+}
+
+.chip {
+  @apply rounded-full border border-labs-line bg-labs-card px-3 py-1 text-xs font-medium text-slate-400;
+}
