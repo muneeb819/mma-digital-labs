@@ -15,41 +15,49 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "80px",
-          background: "linear-gradient(135deg, #070b14 0%, #0d1424 60%, #131c30 100%)",
+          padding: "90px",
+          background: "linear-gradient(135deg, #ffffff 0%, #f0f8fc 70%, #e3ebf9 100%)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
           <div
             style={{
-              width: 92,
-              height: 92,
-              borderRadius: 22,
-              border: "4px solid #6366f1",
-              background: "rgba(99,102,241,0.12)",
+              width: 96,
+              height: 96,
+              borderRadius: 20,
+              border: "5px solid #009cf4",
+              background: "#ffffff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 56,
-              fontWeight: 900,
-              color: "#a5b4fc",
+              fontSize: 58,
+              fontWeight: 800,
+              color: "#2021a8",
             }}
           >
             M
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 64, fontWeight: 900, color: "#f1f5f9", letterSpacing: -2 }}>
+            <div style={{ fontSize: 66, fontWeight: 800, color: "#03034d", letterSpacing: -2 }}>
               MMA
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: "#818cf8", letterSpacing: 10 }}>
+            <div style={{ fontSize: 25, fontWeight: 700, color: "#d19e0b", letterSpacing: 10 }}>
               DIGITAL LABS
             </div>
           </div>
         </div>
-        <div style={{ marginTop: 48, fontSize: 40, fontWeight: 700, color: "#e2e8f0" }}>
-          Production-ready software systems.
+        <div
+          style={{
+            marginTop: 52,
+            fontSize: 56,
+            fontWeight: 800,
+            color: "#03034d",
+            lineHeight: 1.15,
+          }}
+        >
+          Build for six months? Or ship this week.
         </div>
-        <div style={{ marginTop: 16, fontSize: 28, color: "#94a3b8" }}>
+        <div style={{ marginTop: 22, fontSize: 28, color: "#363440" }}>
           Casino platforms · CRMs · AI business development · Telecom compliance — licensed or
           custom-built.
         </div>

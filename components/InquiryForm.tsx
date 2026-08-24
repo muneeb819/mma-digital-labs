@@ -69,8 +69,8 @@ export function InquiryForm({
     return (
       <div className="panel text-center">
         <div className="text-4xl">✅</div>
-        <h3 className="mt-3 font-bold text-white">Request received</h3>
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">
+        <h3 className="mt-3 font-display font-bold text-neutral-900">Request received</h3>
+        <p className="mt-2 text-sm leading-relaxed text-neutral-500">
           Thanks — you&apos;ll hear back within 24 hours{productName ? ` about ${productName}` : ""}.
         </p>
       </div>
@@ -80,7 +80,7 @@ export function InquiryForm({
   return (
     <form onSubmit={submit} className="panel space-y-4">
       <div>
-        <h3 className="font-bold text-white">I&apos;m interested in…</h3>
+        <h3 className="font-display font-bold text-neutral-900">I&apos;m interested in…</h3>
         {productName && (
           <p className="mt-1 text-xs text-slate-500">{productName}</p>
         )}
@@ -92,8 +92,8 @@ export function InquiryForm({
               onClick={() => setOffer(o.type)}
               className={`rounded-lg border px-2 py-2.5 text-center text-xs transition ${
                 offer === o.type
-                  ? "border-indigo-500 bg-indigo-500/10 font-bold text-white"
-                  : "border-labs-line text-slate-400 hover:bg-labs-card"
+                  ? "border-labs-gold bg-labs-gold/10 font-bold text-labs-navy"
+                  : "border-labs-line text-neutral-500 hover:border-labs-gold/50 hover:bg-white"
               }`}
             >
               <div className="text-base">{o.icon}</div>

@@ -21,11 +21,11 @@ interface Lead {
 }
 
 const STATUSES: { key: LeadStatus; label: string; cls: string }[] = [
-  { key: "NEW", label: "New", cls: "bg-indigo-500/15 text-indigo-300" },
-  { key: "CONTACTED", label: "Contacted", cls: "bg-cyan-500/15 text-cyan-300" },
-  { key: "PROPOSAL_SENT", label: "Proposal sent", cls: "bg-amber-500/15 text-amber-300" },
-  { key: "WON", label: "Won", cls: "bg-emerald-500/15 text-emerald-300" },
-  { key: "LOST", label: "Lost", cls: "bg-red-500/15 text-red-300" },
+  { key: "NEW", label: "New", cls: "bg-indigo-100 text-indigo-700" },
+  { key: "CONTACTED", label: "Contacted", cls: "bg-cyan-100 text-cyan-700" },
+  { key: "PROPOSAL_SENT", label: "Proposal sent", cls: "bg-amber-100 text-amber-700" },
+  { key: "WON", label: "Won", cls: "bg-emerald-100 text-emerald-700" },
+  { key: "LOST", label: "Lost", cls: "bg-red-100 text-red-600" },
 ];
 
 export default function AdminPage() {
@@ -95,7 +95,7 @@ export default function AdminPage() {
   if (!authed) {
     return (
       <form onSubmit={login} className="panel mx-auto mt-24 max-w-sm space-y-3">
-        <h1 className="text-xl font-bold text-white">Owner login</h1>
+        <h1 className="font-display text-xl font-extrabold text-neutral-900">Owner login</h1>
         <input
           type="password"
           className="input"
@@ -126,7 +126,7 @@ export default function AdminPage() {
   return (
     <div className="space-y-6 py-12">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-black text-white">Lead pipeline</h1>
+        <h1 className="font-display text-2xl font-extrabold text-neutral-900">Lead pipeline</h1>
         <button onClick={logout} className="btn-outline !px-4 !py-1.5 text-xs">
           Log out
         </button>
@@ -138,10 +138,10 @@ export default function AdminPage() {
             key={c.key}
             onClick={() => setFilter(filter === c.key ? "ALL" : c.key)}
             className={`rounded-xl border p-4 text-left transition ${
-              filter === c.key ? "border-indigo-500 bg-indigo-500/10" : "border-labs-line hover:bg-labs-card"
+              filter === c.key ? "border-labs-gold bg-labs-gold/10" : "border-labs-line hover:bg-white"
             }`}
           >
-            <div className="text-2xl font-black text-white">{c.n}</div>
+            <div className="font-display text-2xl font-extrabold text-labs-navy">{c.n}</div>
             <div className={`mt-0.5 inline-block rounded px-1.5 py-0.5 text-[11px] font-bold ${c.cls}`}>
               {c.label}
             </div>
@@ -150,12 +150,12 @@ export default function AdminPage() {
       </div>
 
       <div className="panel !py-4">
-        <div className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-500">
+        <div className="mb-2 text-xs font-bold uppercase tracking-widest text-labs-gold">
           Lead sources
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {topSources.map(([src, n]) => (
-            <span key={src} className="chip">
+            <span key={src} className="rounded-full bg-labs-panel px-3 py-1 text-xs font-semibold text-labs-navy">
               {src} <b className="ml-1 text-slate-200">{n}</b>
             </span>
           ))}
@@ -169,26 +169,26 @@ export default function AdminPage() {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-bold text-white">{l.name}</span>
-                  <a href={`mailto:${l.email}`} className="text-sm text-indigo-400 hover:text-indigo-300">
+                  <span className="font-display font-bold text-neutral-900">{l.name}</span>
+                  <a href={`mailto:${l.email}`} className="text-sm font-medium text-labs-royal hover:text-labs-gold">
                     {l.email}
                   </a>
-                  {l.company && <span className="chip !py-0.5 text-[11px]">{l.company}</span>}
+                  {l.company && <span className="rounded-full bg-labs-panel px-2.5 py-0.5 text-[11px] font-semibold text-labs-navy">{l.company}</span>}
                 </div>
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                  <span className="rounded bg-labs-card px-2 py-0.5 font-semibold text-slate-300">
+                  <span className="rounded bg-labs-panel px-2 py-0.5 font-semibold text-labs-royal">
                     {l.offerType}
                   </span>
                   {l.productName && <span>{l.productName}</span>}
                   {l.budget && <span>· 💰 {l.budget}</span>}
                   {l.source && (
-                    <span className="rounded bg-indigo-500/10 px-2 py-0.5 font-semibold text-indigo-300">
+                    <span className="rounded bg-labs-gold/10 px-2 py-0.5 font-semibold text-labs-goldDark">
                       {l.source}
                     </span>
                   )}
                   <span>· {new Date(l.createdAt).toLocaleString()}</span>
                 </div>
-                <p className="mt-2 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-slate-400">
+                <p className="mt-2 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-neutral-600">
                   {l.message}
                 </p>
               </div>

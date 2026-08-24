@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import { Epilogue, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+
+const epilogue = Epilogue({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-head",
+});
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -18,9 +31,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${epilogue.variable} ${workSans.variable} font-sans`}>
         <Nav />
-        <main className="mx-auto min-h-[70vh] max-w-6xl px-4">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

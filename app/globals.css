@@ -3,25 +3,59 @@
 @tailwind utilities;
 
 body {
-  @apply bg-labs-bg text-slate-200 antialiased;
+  @apply bg-labs-bg text-neutral-800 antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-2.5 font-semibold text-white shadow-lg shadow-indigo-950/40 transition hover:brightness-110 disabled:opacity-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-gold px-7 py-3 font-medium text-white transition hover:bg-labs-goldDark disabled:opacity-50;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-labs-line px-5 py-2.5 font-semibold text-slate-300 transition hover:bg-labs-card hover:text-white;
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 px-7 py-3 font-medium text-labs-royal transition hover:border-labs-gold hover:text-labs-gold disabled:opacity-50;
+}
+
+.btn-navy {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-navy px-7 py-3 font-medium text-white transition hover:bg-[#1F1346] disabled:opacity-50;
 }
 
 .input {
-  @apply w-full rounded-lg border border-labs-line bg-labs-panel px-3 py-2.5 text-slate-100 placeholder-slate-500 outline-none focus:border-indigo-500;
+  @apply w-full rounded-xl border border-labs-line bg-white px-4 py-3 text-neutral-800 placeholder-neutral-400 outline-none transition focus:border-labs-azure;
 }
 
 .panel {
-  @apply rounded-2xl border border-labs-line bg-labs-panel/60 p-6;
+  @apply rounded-lg border border-transparent bg-labs-panel p-7;
+}
+
+.card {
+  @apply rounded-lg border border-labs-line bg-white p-7 transition;
 }
 
 .chip {
-  @apply rounded-full border border-labs-line bg-labs-card px-3 py-1 text-xs font-medium text-slate-400;
+  @apply rounded-full border border-labs-line bg-white px-3 py-1 text-xs font-medium text-neutral-500;
+}
+
+.nav-link {
+  @apply text-xs font-medium uppercase tracking-widest text-labs-royal transition hover:text-labs-gold;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-dark {
+  background:
+    radial-gradient(60rem 30rem at 15% 10%, rgba(52, 163, 242, 0.22), transparent 60%),
+    radial-gradient(50rem 28rem at 85% 90%, rgba(209, 158, 11, 0.16), transparent 55%),
+    linear-gradient(135deg, #01013a 0%, #03034d 45%, #1f1346 100%);
 }

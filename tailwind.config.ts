@@ -6,14 +6,22 @@ const config: Config = {
     extend: {
       colors: {
         labs: {
-          bg: "#070b14",
-          panel: "#0d1424",
-          card: "#131c30",
-          line: "#22304d",
+          bg: "#ffffff",
+          panel: "#f0f8fc",
+          card: "#ffffff",
+          line: "#dadce0",
+          navy: "#03034d",
+          ink: "#1a1a1a",
+          royal: "#2021a8",
+          gold: "#d19e0b",
+          goldDark: "#b3870a",
+          sky: "#34a3f2",
+          azure: "#009cf4",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "Work Sans", "system-ui", "sans-serif"],
+        display: ["var(--font-head)", "Epilogue", "system-ui", "sans-serif"],
       },
     },
   },
