@@ -16,7 +16,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "90px",
-          background: "linear-gradient(135deg, #ffffff 0%, #f0f8fc 70%, #e3ebf9 100%)",
+          background: "linear-gradient(135deg, #ffffff 0%, #f4f6f8 70%, #dfe5ec 100%)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
@@ -25,23 +25,23 @@ export default function OpengraphImage() {
               width: 96,
               height: 96,
               borderRadius: 20,
-              border: "5px solid #009cf4",
+              border: "5px solid #4a80b8",
               background: "#ffffff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 58,
               fontWeight: 800,
-              color: "#2021a8",
+              color: "#14273a",
             }}
           >
             M
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 66, fontWeight: 800, color: "#03034d", letterSpacing: -2 }}>
+            <div style={{ fontSize: 66, fontWeight: 800, color: "#14273a", letterSpacing: -2 }}>
               MMA
             </div>
-            <div style={{ fontSize: 25, fontWeight: 700, color: "#d19e0b", letterSpacing: 10 }}>
+            <div style={{ fontSize: 25, fontWeight: 700, color: "#96754a", letterSpacing: 10 }}>
               DIGITAL LABS
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function OpengraphImage() {
             marginTop: 52,
             fontSize: 56,
             fontWeight: 800,
-            color: "#03034d",
+            color: "#14273a",
             lineHeight: 1.15,
           }}
         >

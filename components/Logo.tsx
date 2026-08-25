@@ -3,8 +3,8 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
     <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <defs>
         <linearGradient id="lmlg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#009cf4" />
-          <stop offset="1" stopColor="#2021a8" />
+          <stop offset="0" stopColor="#7fa3c8" />
+          <stop offset="1" stopColor="#2f5580" />
         </linearGradient>
       </defs>
       <path
@@ -22,7 +22,7 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="32" cy="47.5" r="3.2" fill="#d19e0b" />
+      <circle cx="32" cy="47.5" r="3.2" fill="#b08a4f" />
     </svg>
   );
 }

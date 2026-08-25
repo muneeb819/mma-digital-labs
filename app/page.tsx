@@ -37,7 +37,7 @@ const SECTORS = [
 
 const WHY_BUY: [string, string, string][] = [
   ["#046604", "Days to launch", "Skip a 4–6 month development cycle — licensed systems deploy in days."],
-  ["#2021a8", "100% source ownership", "Every license includes the complete repository. You own your stack."],
+  ["#3e6b9e", "100% source ownership", "Every license includes the complete repository. You own your stack."],
   ["#b3870a", "Production-hardened", "Real systems already running in production — not prototypes or templates."],
   ["#851205", "Zero hiring risk", "No recruiting, onboarding or managing a dev team. We engineer, you operate."],
 ];
