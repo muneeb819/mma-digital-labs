@@ -3,6 +3,7 @@ import { Epilogue, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { Watermark } from "@/components/Watermark";
 
 const epilogue = Epilogue({
   subsets: ["latin"],
@@ -32,8 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${epilogue.variable} ${workSans.variable} font-sans`}>
+        <Watermark />
         <Nav />
-        <main>{children}</main>
+        <main className="relative z-10">{children}</main>
         <Footer />
       </body>
     </html>
