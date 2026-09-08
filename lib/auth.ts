@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 export const ADMIN_COOKIE = "labs_admin";
 
 function adminPassword(): string {
-  return process.env.ADMIN_PASSWORD || "labs-admin-2026";
+  return process.env.ADMIN_PASSWORD ?? "";
 }
 
 export function sessionToken(): string {
