@@ -52,12 +52,19 @@ SITE_URL="$SCHEME://$DOMAIN"
 export DEBIAN_FRONTEND=noninteractive
 
 # ---------- Package helpers ----------
+# Amazon Linux 2023 ships `curl-minimal`, which CONFLICTS with the full `curl`
+# package — asking dnf for `curl` aborts the whole transaction. curl-minimal
+# provides a working curl binary, so only install curl when none exists.
 install_base_pkgs() {
   if [ "$PKG_FAMILY" = "debian" ]; then
     apt-get update -y
     apt-get install -y nginx postgresql git curl ca-certificates openssl
   else
-    $PM install -y nginx git curl ca-certificates openssl
+    pkgs="nginx git ca-certificates openssl"
+    command -v curl >/dev/null 2>&1 || pkgs="$pkgs curl"
+    echo "    installing: $pkgs"
+    # --allowerasing fallback covers other curl-minimal-style conflicts
+    $PM install -y $pkgs || $PM install -y --allowerasing $pkgs
   fi
 }
 
@@ -70,7 +77,7 @@ install_postgres() {
     amazon-linux-extras enable postgresql11 >/dev/null 2>&1 || true
     $PM clean metadata >/dev/null 2>&1 || true
   fi
-  $PM install -y postgresql-server postgresql
+  $PM install -y postgresql-server postgresql || $PM install -y --allowerasing postgresql-server postgresql
 }
 
 install_node() {
@@ -79,10 +86,10 @@ install_node() {
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
     apt-get install -y nodejs
   else
-    if ! curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -; then
-      $PM install -y nodejs npm    # distro fallback (older Node, but works)
-    else
-      $PM install -y nodejs
+    curl -fsSL https://rpm.nodesource.com/setup_20.x | bash - || \
+      echo "    NodeSource setup failed — will try distro packages"
+    if ! command -v node >/dev/null 2>&1 || [[ "$(node -v)" != v20* ]]; then
+      $PM install -y nodejs20 npm 2>/dev/null || $PM install -y nodejs npm
     fi
   fi
   [[ "$(node -v 2>/dev/null)" == v20* ]] || echo "    ⚠ installed Node $(node -v 2>/dev/null) — v20 recommended"
