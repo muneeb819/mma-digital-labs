@@ -5,23 +5,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Futuristic dark system — matte, muted, zero neon.
         labs: {
-          bg: "#ffffff",
-          panel: "#f4f6f8",
-          card: "#ffffff",
-          line: "#d9dee4",
-          navy: "#14273a",
-          ink: "#1a1a1a",
-          royal: "#3e6b9e",
-          gold: "#96754a",
-          goldDark: "#7a5c36",
-          sky: "#587fa9",
-          azure: "#4a80b8",
+          bg: "#0a0d13", // deep space base
+          panel: "#11161f", // elevated section surface
+          card: "#161c27", // card / form surface
+          line: "#242d3b", // crisp 1px borders
+          navy: "#0d1420", // deepest surface (footer, bands)
+          ink: "#e9edf4", // primary text (near-white)
+          royal: "#8aa3c9", // muted steel blue
+          gold: "#c8a24c", // muted brass — primary accent
+          goldDark: "#a8843a", // pressed / secondary gold
+          sky: "#1d2c40", // muted blue band
+          azure: "#41608c", // focus borders
         },
       },
       fontFamily: {
         sans: ["var(--font-body)", "Work Sans", "system-ui", "sans-serif"],
         display: ["var(--font-head)", "Epilogue", "system-ui", "sans-serif"],
+      },
+      transitionTimingFunction: {
+        // Signature easing — decelerating, "system boot" feel
+        fut: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },

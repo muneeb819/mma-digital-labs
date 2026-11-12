@@ -3,6 +3,10 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci
 COPY . .
+# NEXT_PUBLIC_* vars are baked into the static build (sitemap/robots/OG),
+# and .env files are excluded from the build context — pass the site URL in:
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 # package.json "build" runs `prisma generate && next build`
 RUN npm run build
 # Drop devDependencies so the runner ships only production modules

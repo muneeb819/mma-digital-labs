@@ -17,7 +17,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "90px",
-          background: "linear-gradient(135deg, #ffffff 0%, #f4f6f8 70%, #dfe5ec 100%)",
+          background:
+            "radial-gradient(circle at 15% -10%, rgba(65,96,140,0.35), transparent 60%), linear-gradient(150deg, #0a0d13 0%, #0e1522 55%, #12202f 100%)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
@@ -26,39 +27,41 @@ export default function OpengraphImage() {
               width: 96,
               height: 96,
               borderRadius: 20,
-              border: "5px solid #4a80b8",
-              background: "#ffffff",
+              border: "5px solid #c8a24c",
+              background: "transparent",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 58,
               fontWeight: 800,
-              color: "#14273a",
+              color: "#c8a24c",
             }}
           >
             M
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 66, fontWeight: 800, color: "#14273a", letterSpacing: -2 }}>
+            <div style={{ fontSize: 66, fontWeight: 800, color: "#f2f5fa", letterSpacing: -2 }}>
               MMA
             </div>
-            <div style={{ fontSize: 25, fontWeight: 700, color: "#96754a", letterSpacing: 10 }}>
+            <div style={{ fontSize: 25, fontWeight: 700, color: "#c8a24c", letterSpacing: 10 }}>
               DIGITAL LABS
             </div>
           </div>
         </div>
         <div
           style={{
+            display: "flex",
             marginTop: 52,
             fontSize: 56,
             fontWeight: 800,
-            color: "#14273a",
+            color: "#f2f5fa",
             lineHeight: 1.15,
           }}
         >
-          Build for six months? Or ship this week.
+          Build for six months?{" "}
+          <span style={{ color: "#c8a24c" }}>Or ship this week.</span>
         </div>
-        <div style={{ marginTop: 22, fontSize: 28, color: "#363440" }}>
+        <div style={{ marginTop: 22, fontSize: 28, color: "#9fb0c4" }}>
           Casino platforms · CRMs · AI business development · Telecom compliance — licensed or
           custom-built.
         </div>

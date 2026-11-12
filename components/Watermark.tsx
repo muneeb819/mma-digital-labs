@@ -8,7 +8,7 @@ export function Watermark() {
       <img
         src="/logo-md.png"
         alt=""
-        className="w-[72vmin] max-w-[820px] opacity-[0.035] brightness-0"
+        className="w-[72vmin] max-w-[820px] opacity-[0.05] brightness-0 invert"
         draggable={false}
       />
     </div>

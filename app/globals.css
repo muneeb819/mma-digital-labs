@@ -2,68 +2,213 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============ Base ============ */
 body {
-  @apply bg-labs-bg text-neutral-800 antialiased;
+  @apply bg-labs-bg text-slate-300 antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display;
+  @apply font-display text-white;
 }
 
+::selection {
+  background: rgba(200, 162, 76, 0.28);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0d13;
+}
+::-webkit-scrollbar-thumb {
+  background: #242d3b;
+  border-radius: 6px;
+  border: 2px solid #0a0d13;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34405280;
+}
+
+/* ============ Components ============ */
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-gold px-7 py-3 font-medium text-white transition hover:bg-labs-goldDark disabled:opacity-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-gold px-7 py-3 font-medium text-labs-navy transition-all duration-300 ease-fut hover:bg-labs-goldDark hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:hover:translate-y-0;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 px-7 py-3 font-medium text-labs-royal transition hover:border-labs-gold hover:text-labs-gold disabled:opacity-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-3 font-medium text-slate-200 transition-all duration-300 ease-fut hover:border-labs-gold hover:text-labs-gold hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:hover:translate-y-0;
 }
 
 .btn-navy {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-navy px-7 py-3 font-medium text-white transition hover:bg-[#1e3550] disabled:opacity-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-labs-navy px-7 py-3 font-medium text-white transition-all duration-300 ease-fut hover:bg-labs-sky disabled:opacity-50;
 }
 
 .input {
-  @apply w-full rounded-xl border border-labs-line bg-white px-4 py-3 text-neutral-800 placeholder-neutral-400 outline-none transition focus:border-labs-azure;
+  @apply w-full rounded-xl border border-labs-line bg-labs-card px-4 py-3 text-labs-ink placeholder-slate-500 outline-none transition-colors duration-300 focus:border-labs-azure;
 }
 
 .panel {
-  @apply rounded-lg border border-transparent bg-labs-panel p-7;
+  @apply rounded-lg border border-white/5 bg-labs-panel p-7;
 }
 
 .card {
-  @apply rounded-lg border border-labs-line bg-white p-7 transition;
+  @apply rounded-lg border border-labs-line bg-labs-card p-7 transition-all duration-300 ease-fut;
 }
 
 .chip {
-  @apply rounded-full border border-labs-line bg-white px-3 py-1 text-xs font-medium text-neutral-500;
+  @apply rounded-full border border-labs-line bg-labs-card px-3 py-1 text-xs font-medium text-slate-400;
 }
 
 .nav-link {
-  @apply text-xs font-medium uppercase tracking-widest text-labs-royal transition hover:text-labs-gold;
+  @apply text-xs font-medium uppercase tracking-widest text-slate-400 transition-colors duration-300 hover:text-labs-gold;
 }
 
+/* Metallic gradient headline accent (matte — no glow) */
+.text-gradient {
+  background: linear-gradient(100deg, #e7cd94 0%, #c8a24c 38%, #93b0d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Small uppercase eyebrow label with a thin rule */
+.kicker {
+  @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-labs-gold;
+}
+.kicker::before {
+  content: "";
+  @apply h-px w-8 bg-labs-gold/50;
+}
+
+/* Corner tick accent for cards (geometric, matte) */
+.card-tick {
+  position: relative;
+}
+.card-tick::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid rgba(200, 162, 76, 0);
+  border-right: 2px solid rgba(200, 162, 76, 0);
+  transition: border-color 0.4s ease-fut;
+}
+.card-tick:hover::after {
+  border-color: rgba(200, 162, 76, 0.7);
+}
+
+/* ============ Scroll reveals ============ */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease-fut, transform 0.8s ease-fut;
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+/* ============ Hero ============ */
+.hero-dark {
+  position: relative;
+  background:
+    radial-gradient(70rem 40rem at 12% -10%, rgba(65, 96, 140, 0.22), transparent 60%),
+    radial-gradient(60rem 36rem at 88% 110%, rgba(200, 162, 76, 0.1), transparent 55%),
+    linear-gradient(160deg, #0a0d13 0%, #0e1522 55%, #12202f 100%);
+}
+/* Drifting perspective grid */
+.hero-dark::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background-image:
+    linear-gradient(rgba(138, 163, 201, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 163, 201, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(70% 70% at 50% 35%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 35%, #000 20%, transparent 75%);
+  animation: gridDrift 70s linear infinite;
+}
+/* Slow drifting accent field */
+.hero-dark::after {
+  content: "";
+  position: absolute;
+  width: 44rem;
+  height: 44rem;
+  right: -12rem;
+  top: -14rem;
+  background: radial-gradient(closest-side, rgba(65, 96, 140, 0.16), transparent 70%);
+  animation: orbDrift 26s ease-in-out infinite alternate;
 }
 
-.hero-dark {
-  background:
-    radial-gradient(60rem 30rem at 15% 10%, rgba(74, 128, 184, 0.28), transparent 60%),
-    radial-gradient(50rem 28rem at 85% 90%, rgba(150, 117, 74, 0.22), transparent 55%),
-    linear-gradient(135deg, #0e1c2c 0%, #14273a 45%, #24405e 100%);
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 56px 56px, 56px 56px; }
+}
+@keyframes orbDrift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-4rem, 3rem, 0) scale(1.12); }
+}
+
+/* Staggered entrance (hero + lists) */
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.9s ease-fut forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.25s; }
+.d4 { animation-delay: 0.35s; }
+.d5 { animation-delay: 0.45s; }
+.d6 { animation-delay: 0.55s; }
+.d7 { animation-delay: 0.65s; }
+.d8 { animation-delay: 0.75s; }
+
+/* ============ Marquee (tech stack wall) ============ */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 3.5rem;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============ FAQ accordion ============ */
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-body {
+  animation: faqIn 0.45s ease-fut both;
+}
+@keyframes faqIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .fade-up, .marquee-track, .hero-dark::before, .hero-dark::after,
+  details[open] .faq-body {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
