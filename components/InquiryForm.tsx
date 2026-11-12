@@ -75,8 +75,8 @@ export function InquiryForm({
     return (
       <div role="status" aria-live="polite" className="panel text-center">
         <div className="text-4xl">✅</div>
-        <h3 className="mt-3 font-display font-bold text-neutral-900">Request received</h3>
-        <p className="mt-2 text-sm leading-relaxed text-neutral-500">
+        <h3 className="mt-3 font-display font-bold text-white">Request received</h3>
+        <p className="mt-2 text-sm leading-relaxed text-slate-400">
           Thanks — you&apos;ll hear back within 24 hours{productName ? ` about ${productName}` : ""}.
         </p>
       </div>
@@ -86,9 +86,9 @@ export function InquiryForm({
   return (
     <form onSubmit={submit} className="panel space-y-4">
       <div>
-        <h3 className="font-display font-bold text-neutral-900">I&apos;m interested in…</h3>
+        <h3 className="font-display font-bold text-white">I&apos;m interested in…</h3>
         {productName && (
-          <p className="mt-1 text-xs text-slate-500">{productName}</p>
+          <p className="mt-1 text-xs text-slate-400">{productName}</p>
         )}
         <div className="mt-3 grid grid-cols-3 gap-1.5">
           {OFFERS.map((o) => (
@@ -98,8 +98,8 @@ export function InquiryForm({
               onClick={() => setOffer(o.type)}
               className={`rounded-lg border px-2 py-2.5 text-center text-xs transition ${
                 offer === o.type
-                  ? "border-labs-gold bg-labs-gold/10 font-bold text-labs-navy"
-                  : "border-labs-line text-neutral-500 hover:border-labs-gold/50 hover:bg-white"
+                  ? "border-labs-gold bg-labs-gold/10 font-bold text-white"
+                  : "border-labs-line text-slate-400 hover:border-labs-gold/50 hover:bg-labs-card"
               }`}
             >
               <div className="text-base">{o.icon}</div>
@@ -112,7 +112,7 @@ export function InquiryForm({
       <input name="name" required placeholder="Your name *" aria-label="Your name" className="input" />
       <input name="email" type="email" required placeholder="Work email *" aria-label="Work email" className="input" />
       <input name="company" placeholder="Company (optional)" aria-label="Company (optional)" className="input" />
-      <select name="budget" aria-label="Budget range" className="input text-neutral-600" defaultValue="">
+      <select name="budget" aria-label="Budget range" className="input text-slate-400" defaultValue="">
         <option value="" disabled>
           Budget range
         </option>
@@ -149,7 +149,7 @@ export function InquiryForm({
       <button className="btn-primary w-full" disabled={status === "sending"}>
         {status === "sending" ? "Sending…" : "Send inquiry →"}
       </button>
-      <p className="text-center text-[11px] text-slate-600">
+      <p className="text-center text-[11px] text-slate-500">
         Response within 24 hours. No spam, ever.
       </p>
     </form>

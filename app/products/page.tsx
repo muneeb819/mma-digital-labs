@@ -13,13 +13,13 @@ export default function ProductsPage() {
   const categories = [...new Set(PRODUCTS.map((p) => p.category))];
 
   return (
-    <div className="bg-white">
+    <div className="bg-labs-bg">
       <div className="mx-auto max-w-6xl space-y-12 px-4 py-20">
         <header className="max-w-2xl">
-          <h1 className="font-display text-5xl font-extrabold text-neutral-900">
+          <h1 className="font-display text-5xl font-extrabold text-white">
             Systems catalog
           </h1>
-          <p className="mt-4 leading-relaxed text-neutral-500">
+          <p className="mt-4 leading-relaxed text-slate-400">
             Each listing is a working system with real code behind it. License it as-is, book a
             demo, or use it as the foundation for your custom build.
           </p>

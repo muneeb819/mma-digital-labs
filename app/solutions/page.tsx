@@ -23,13 +23,13 @@ export default function SolutionsIndexPage() {
       : (PRODUCTS.find((p) => p.key === key)?.name.split("—")[0].trim() ?? key);
 
   return (
-    <div className="bg-white">
+    <div className="bg-labs-bg">
       <div className="mx-auto max-w-6xl space-y-14 px-4 py-20">
         <header className="max-w-2xl">
-          <h1 className="font-display text-5xl font-extrabold text-neutral-900">
+          <h1 className="font-display text-5xl font-extrabold text-white">
             Solutions &amp; buyer guides
           </h1>
-          <p className="mt-4 leading-relaxed text-neutral-500">
+          <p className="mt-4 leading-relaxed text-slate-400">
             Straight answers to the searches that brought you here — each guide ties back to a
             system you can license or commission today.
           </p>
@@ -45,10 +45,10 @@ export default function SolutionsIndexPage() {
                 <Link
                   key={p.slug}
                   href={`/solutions/${p.slug}`}
-                  className="bg-labs-panel p-6 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg hover:shadow-slate-200"
+                  className="bg-labs-panel p-6 transition hover:-translate-y-0.5 hover:bg-labs-card hover:shadow-lg hover:shadow-black/40"
                 >
-                  <div className="font-display font-bold leading-snug text-labs-navy">{p.keyword}</div>
-                  <p className="mt-2 line-clamp-2 text-sm text-neutral-500">{p.description}</p>
+                  <div className="font-display font-bold leading-snug text-white">{p.keyword}</div>
+                  <p className="mt-2 line-clamp-2 text-sm text-slate-400">{p.description}</p>
                 </Link>
               ))}
             </div>

@@ -17,11 +17,11 @@ export default function ContactPage() {
             <br />
             <span className="text-labs-gold">what you&apos;re building.</span>
           </h1>
-          <p className="max-w-md leading-relaxed text-blue-50">
+          <p className="max-w-md leading-relaxed text-slate-300">
             Whether you need one of our systems licensed as-is, adapted to your business, or a
             ground-up custom platform — the fastest path is a short message here.
           </p>
-          <div className="space-y-4 border-l-2 border-white/40 pl-5 text-sm text-blue-50">
+          <div className="space-y-4 border-l-2 border-white/40 pl-5 text-sm text-slate-300">
             <p>
               <span className="font-bold text-white">24h response.</span> Every inquiry lands
               directly with an engineer, not a sales queue.
@@ -36,7 +36,7 @@ export default function ContactPage() {
             </p>
           </div>
         </header>
-        <div id="inquire" className="h-fit rounded-xl bg-white p-2 shadow-xl shadow-blue-900/10">
+        <div id="inquire" className="h-fit rounded-xl bg-labs-card p-2 shadow-xl shadow-black/40">
           <InquiryForm />
         </div>
       </div>

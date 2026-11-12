@@ -45,6 +45,7 @@ and an empty password is always rejected. Use a long random value.
 | `DATABASE_URL`      | Prisma connection (PostgreSQL — local, Docker, Neon) |
 | `ADMIN_PASSWORD`    | Password for the `/admin` dashboard. **Required** — the dashboard is disabled until set; empty passwords are rejected |
 | `SESSION_SECRET`    | Optional. Peppers the admin session cookie so it can't be derived from the password alone |
+| `COOKIE_SECURE`     | Optional. Set to `false` **only** for plain-HTTP deploys (bare-IP server before SSL) so the admin cookie works over HTTP. Defaults to `true` in production |
 | `LEAD_WEBHOOK_URL`  | Optional. Every new lead is POSTed there as `{text}` — point it at a Slack/Discord webhook to get pinged instantly |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL for sitemap/SEO metadata       |
 
@@ -54,6 +55,18 @@ All products live in **`lib/products.ts`** as plain data — name, tagline,
 description, features, stack, category, icon/gradient, live-demo URL. Add a new
 product by appending one object; the catalog page, product page, sitemap of
 routes and inquiry forms all pick it up automatically.
+
+## Deploying (your own EC2)
+
+One command on a fresh Ubuntu EC2 instance:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/muneeb819/mma-digital-labs/main/deploy/ec2-setup.sh | sudo bash
+```
+
+The script sets up swap (for t3.micro builds), Node 20, PostgreSQL, Nginx,
+PM2, generates strong secrets, and prints the site + admin URLs and the
+generated `ADMIN_PASSWORD`. Re-run it any time to redeploy the latest `main`.
 
 ## Deploying (Vercel)
 

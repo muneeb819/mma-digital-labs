@@ -21,6 +21,20 @@ export function authConfigured(): boolean {
   return adminPassword().length > 0;
 }
 
+/**
+ * Whether the session cookie gets the `Secure` flag.
+ * Defaults to true in production, but can be overridden with COOKIE_SECURE=false
+ * for plain-HTTP deployments (e.g. a bare-IP EC2 box before SSL exists) —
+ * browsers refuse to store `Secure` cookies over HTTP, which would make the
+ * admin dashboard unloginable there.
+ */
+export function cookieSecure(): boolean {
+  const v = (process.env.COOKIE_SECURE ?? "").toLowerCase();
+  if (v === "false" || v === "0" || v === "no") return false;
+  if (v === "true" || v === "1" || v === "yes") return true;
+  return process.env.NODE_ENV === "production";
+}
+
 export function sessionToken(): string {
   return crypto
     .createHmac("sha256", sessionSecret())

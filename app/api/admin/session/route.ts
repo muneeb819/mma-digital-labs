@@ -3,6 +3,7 @@ import {
   ADMIN_COOKIE,
   authConfigured,
   checkPassword,
+  cookieSecure,
   sessionToken,
 } from "@/lib/auth";
 import { clientIp, rateLimit, TOO_MANY } from "@/lib/rate-limit";
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
   res.cookies.set(ADMIN_COOKIE, sessionToken(), {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: cookieSecure(),
     maxAge: 60 * 60 * 24 * 14,
     path: "/",
   });
@@ -48,7 +49,7 @@ export async function DELETE() {
     path: "/",
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: cookieSecure(),
   });
   return res;
 }
