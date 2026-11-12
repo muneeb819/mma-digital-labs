@@ -58,7 +58,8 @@ routes and inquiry forms all pick it up automatically.
 
 ## Deploying (your own EC2)
 
-One command on a fresh Ubuntu EC2 instance:
+One command on a fresh EC2 instance (works on **Amazon Linux 2023/2** and
+**Ubuntu/Debian** — the script auto-detects):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/muneeb819/mma-digital-labs/main/deploy/ec2-setup.sh | sudo bash
