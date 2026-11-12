@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// No `runtime = "edge"`: it disabled static generation for this route
+// (build warning) for no benefit — ImageResponse prerenders fine on Node.
 export const alt = "MMA Digital Labs — Production-ready software systems";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
