@@ -36,14 +36,26 @@ export default function AdminPage() {
   const [filter, setFilter] = useState<"ALL" | LeadStatus>("ALL");
 
   const loadLeads = useCallback(async () => {
-    const res = await fetch("/api/admin/leads");
-    if (res.status === 401) {
+    try {
+      const res = await fetch("/api/admin/leads");
+      if (res.status === 401) {
+        setAuthed(false);
+        return;
+      }
+      if (!res.ok) {
+        // Server trouble (e.g. database down) — surface it instead of
+        // silently keeping the loading state forever.
+        setError("Could not load leads — is the database reachable?");
+        setAuthed(true);
+        return;
+      }
+      const data = await res.json();
+      setLeads(Array.isArray(data.leads) ? data.leads : []);
+      setAuthed(true);
+    } catch {
+      setError("Could not reach the server.");
       setAuthed(false);
-      return;
     }
-    const data = await res.json();
-    setLeads(data.leads);
-    setAuthed(true);
   }, []);
 
   useEffect(() => {
@@ -53,35 +65,55 @@ export default function AdminPage() {
   async function login(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    const res = await fetch("/api/admin/session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    if (!res.ok) {
-      setError("Wrong password");
-      return;
+    try {
+      const res = await fetch("/api/admin/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error === "Admin dashboard is not configured."
+          ? "Admin dashboard is not configured — set ADMIN_PASSWORD on the server."
+          : "Wrong password");
+        return;
+      }
+      await loadLeads();
+    } catch {
+      setError("Could not reach the server.");
     }
-    await loadLeads();
   }
 
   async function setStatus(id: string, status: LeadStatus) {
-    setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status } : l)));
-    await fetch("/api/admin/leads", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, status }),
-    });
+    const prev = leads;
+    setLeads((p) => p.map((l) => (l.id === id ? { ...l, status } : l)));
+    try {
+      const res = await fetch("/api/admin/leads", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      // Roll back the optimistic update so UI and server stay consistent.
+      setLeads(prev);
+    }
   }
 
   async function remove(id: string) {
     if (!window.confirm("Delete this lead permanently?")) return;
-    setLeads((prev) => prev.filter((l) => l.id !== id));
-    await fetch("/api/admin/leads", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
+    const prev = leads;
+    setLeads((p) => p.filter((l) => l.id !== id));
+    try {
+      const res = await fetch("/api/admin/leads", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      setLeads(prev);
+    }
   }
 
   async function logout() {
@@ -104,7 +136,7 @@ export default function AdminPage() {
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
         />
-        {error && <p className="text-sm text-red-400">{error}</p>}
+          {error && <p role="alert" className="text-sm text-red-400">{error}</p>}
         <button className="btn-primary w-full">Sign in</button>
       </form>
     );
@@ -156,7 +188,7 @@ export default function AdminPage() {
         <div className="flex flex-wrap items-center gap-2">
           {topSources.map(([src, n]) => (
             <span key={src} className="rounded-full bg-labs-panel px-3 py-1 text-xs font-semibold text-labs-navy">
-              {src} <b className="ml-1 text-slate-200">{n}</b>
+              {src} <b className="ml-1 text-labs-goldDark">{n}</b>
             </span>
           ))}
           {topSources.length === 0 && <span className="text-xs text-slate-600">No leads yet</span>}

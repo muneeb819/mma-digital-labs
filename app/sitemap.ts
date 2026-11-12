@@ -2,8 +2,13 @@ import type { MetadataRoute } from "next";
 import { PRODUCTS } from "@/lib/products";
 import { SEO_PAGES } from "@/lib/seo";
 
+// Same fallback as layout.tsx metadataBase — a sitemap full of localhost URLs
+// would quietly de-index the site if NEXT_PUBLIC_SITE_URL were ever unset.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://mma-digital-labs.vercel.app";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3100";
+  const base = SITE_URL;
 
   const staticRoutes = ["", "/products", "/contact", "/solutions"].map((path) => ({
     url: `${base}${path}`,

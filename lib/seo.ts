@@ -323,7 +323,7 @@ export const SEO_PAGES: SeoPage[] = [
     slug: "vici-dialer-cdr-scrubber",
     keyword: "Vici Dialer CDR scrubber",
     title: "Vici Dialer CDR Scrubber — Fraud Detection Built In",
-      description:
+    description:
       "Enterprise CDR scrubbing for VICIdialer: fraud rule engine, data profiling, geo-analysis and audit reports. Go-powered throughput, source license available.",
     productKey: "vici-scrubber",
     offer: "LICENSE",
@@ -410,7 +410,7 @@ export const SEO_PAGES: SeoPage[] = [
     slug: "founder-led-sales-system",
     keyword: "Founder-led sales system for consultancies",
     title: "A Founder-Led Sales System for Consultancies",
-      description:
+    description:
       "Personal-brand site fused with AI-assisted BD workflows: positioning, opportunity matching and outreach content. A base you can license and shape.",
     productKey: "bd-system",
     offer: "LICENSE",
@@ -495,7 +495,7 @@ export const SEO_PAGES: SeoPage[] = [
     slug: "hire-nestjs-nextjs-developers",
     keyword: "Hire NestJS / Next.js development team",
     title: "Hire the Team Behind These Platforms (NestJS · Next.js · Go)",
-      description:
+    description:
       "Contract the engineers who built a double-entry casino ledger, an AI BD platform and a Go telecom scrubber. Staff augmentation or fixed-scope teams.",
     offer: "CUSTOM",
     intro: [

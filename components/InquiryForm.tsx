@@ -25,7 +25,13 @@ export function InquiryForm({
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const utm = params.get("utm_source") || "";
+    // Capture every utm_* parameter (source, medium, campaign, term, content),
+    // not just utm_source, so campaign attribution survives the whole funnel.
+    const utm = [...new Set(Array.from(params.keys()))]
+      .filter((k) => k.toLowerCase().startsWith("utm_"))
+      .map((k) => `${k}=${params.get(k) ?? ""}`)
+      .join("&")
+      .slice(0, 240);
     setAttribution({
       pagePath: window.location.pathname,
       referrer: document.referrer || "",
@@ -67,7 +73,7 @@ export function InquiryForm({
 
   if (status === "sent") {
     return (
-      <div className="panel text-center">
+      <div role="status" aria-live="polite" className="panel text-center">
         <div className="text-4xl">✅</div>
         <h3 className="mt-3 font-display font-bold text-neutral-900">Request received</h3>
         <p className="mt-2 text-sm leading-relaxed text-neutral-500">
@@ -103,10 +109,10 @@ export function InquiryForm({
         </div>
       </div>
 
-      <input name="name" required placeholder="Your name *" className="input" />
-      <input name="email" type="email" required placeholder="Work email *" className="input" />
-      <input name="company" placeholder="Company (optional)" className="input" />
-      <select name="budget" className="input text-slate-300" defaultValue="">
+      <input name="name" required placeholder="Your name *" aria-label="Your name" className="input" />
+      <input name="email" type="email" required placeholder="Work email *" aria-label="Work email" className="input" />
+      <input name="company" placeholder="Company (optional)" aria-label="Company (optional)" className="input" />
+      <select name="budget" aria-label="Budget range" className="input text-neutral-600" defaultValue="">
         <option value="" disabled>
           Budget range
         </option>
@@ -122,6 +128,7 @@ export function InquiryForm({
         minLength={10}
         rows={4}
         placeholder="Tell us what you need — timeline, use case, must-haves… *"
+        aria-label="Message"
         className="input resize-none"
       />
       <input
@@ -133,7 +140,11 @@ export function InquiryForm({
         aria-hidden="true"
       />
 
-      {status === "error" && error && <p className="text-sm text-red-400">{error}</p>}
+      {status === "error" && error && (
+        <p role="alert" className="text-sm text-red-400">
+          {error}
+        </p>
+      )}
 
       <button className="btn-primary w-full" disabled={status === "sending"}>
         {status === "sending" ? "Sending…" : "Send inquiry →"}
